@@ -1,0 +1,28 @@
+import { youtubeModel } from "../model/sujall.js";
+
+const youtube = async (req, res) => {
+  try {
+    const get = await youtubeModel.find({});
+    res.send(get);
+  } catch (err) {
+    throw err;
+  }
+};
+
+const ytpost = async (req, res) => {
+  try {
+    const data = await req.body;
+    if (data) {
+      const user = await youtubeModel.create({
+        name: data.name,
+          photo: req.files,
+      });
+      
+res.send("complete");
+    }
+  } catch (err) {
+    throw err;
+    }
+};
+
+export { ytpost, youtube };
